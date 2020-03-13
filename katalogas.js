@@ -93,22 +93,6 @@ let catalog = {
     ]
 }
 
-const newBook = "(nauja knyga)"
-
-for (const category in catalog) {
-    console.log(`${category} (${catalog[category].length} knygų):`)
-    for (const book of catalog[category]) {
-        for (const key in book) {
-            if (key === "years" && book[key] === 2020) {
-                console.log(`${key}: ${book[key]} ${newBook}`)
-            } else {
-                console.log(`${key}: ${book[key]}`)
-            }
-        }
-        console.log("\n")
-    }
-}
-
 
 //Atvaizduoti visas kategorijas su knygomis 
 
@@ -152,6 +136,7 @@ function resultsTable() {
             table.appendChild(row)
         
             for (const key in book) {
+                const newBook = "(nauja knyga)"
                 let col = document.createElement("td")
                 if (key === "years" && book[key] === 2020) {
                     col.textContent = `${book[key]} ${newBook}`
@@ -217,64 +202,5 @@ function searchBook() {
         }
     }
 }
-
-
-
-
-
-
-
-// 1.1 Išvesti knygas, kurios išleistos 2018 m.
-
-for (const category in catalog) {
-    for (const book of catalog[category]) {
-        if (book.years === 2018) {
-            for (const key in book) {
-                console.log(`${key}: ${book[key]}`)
-            }
-            console.log("\n")
-        }
-    }
-}
-
-
-// 1.2 Išvesti knygų kategorijas su pigiausiomis knygomis. (Kategorijos pavadinimas: Pigiausios knygos pavadinimas)
-
-for (const category in catalog) {
-    let cheap = catalog[category][0].price
-    let cheapest = catalog[category][0].title
-    for (const book of catalog[category]) {
-        if (book.price < cheap) {
-            cheap = book.price
-            cheapest = book.title
-        }
-    }
-    console.log(`${category} : ${cheapest}`)
-}
-
-// 1.3 Apvalinkite knygų katalogo kainas iki dviejų skaičių po kablelio
-for (const category in catalog) {
-    for (const book of catalog[category]) {
-        book.price = book.price.toFixed(2)
-        console.log(book.price)
-    }
-}
-
-
-// 1.3 Sukurti knygos paiešką pagal pavadinimą. Paieškos užklausa priskiriama konstantai. Išvedama visa informacija apie surastą knygą.
-const search = "Kelionių razinos"
-
-for (const category in catalog) {
-    for (const book of catalog[category]) {
-        if (search === book.title) {
-            console.log(category)
-            for (const key in book) {
-                console.log(`${key} : ${book[key]}`)
-            }
-            break
-        }
-    }
-}
-
 
 
